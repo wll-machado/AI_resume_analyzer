@@ -3,6 +3,9 @@ import type { Route } from "./+types/home";
 
 import ResumeCard from "~/components/ResumeCard";
 import { resumes } from "../../constants/index";
+import { usePuterStore } from "~/lib/puter";
+import { useNavigate } from "react-router";
+import { useEffect } from "react";
 
 
 export function meta({}: Route.MetaArgs) {
@@ -13,13 +16,28 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
+
+const { auth } = usePuterStore();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if(!auth.isAuthenticated) navigate('/auth?next=/');
+    }, [auth.isAuthenticated])
+
+
+
+
   return <main className="bg-[url('images/bg-main.svg')] md:bg-cover">
 
     <Navbar />
 
+    
+
     <section className="main-section">
-      <h1>Monitore suas vagas e analise seu curriculo</h1>
+      <div className="page-heading py-16">
+        <h1>Monitore suas vagas e analise seu curriculo</h1>
       <h2>revise seus envios e receba feedback com uma poderosa IA</h2>
+      </div>
 
     {
       resumes.length > 0 && (
