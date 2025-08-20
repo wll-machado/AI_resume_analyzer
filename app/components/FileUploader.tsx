@@ -1,7 +1,6 @@
 import {useState, useCallback} from 'react'
 import {useDropzone} from 'react-dropzone'
-import { formatSize } from '~/lib/util';
-
+import { formatSize } from '../lib/utils'
 
 interface FileUploaderProps {
     onFileSelect?: (file: File | null) => void;
@@ -59,7 +58,7 @@ const FileUploader = ({ onFileSelect }: FileUploaderProps) => {
                             </div>
                             <p className="text-lg text-gray-500">
                                 <span className="font-semibold">
-                                    Clique para carregar um arquivo
+                                    Clique para fazer upload
                                 </span> ou arraste e solte
                             </p>
                             <p className="text-lg text-gray-500">PDF (max {formatSize(maxFileSize)})</p>
